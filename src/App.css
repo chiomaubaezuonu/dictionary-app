@@ -17,3 +17,12 @@
 }
 
 
+.ant-switch.ant-switch-checked {
+  background-color: hsl(274deg, 82%, 60%);
+}
+::placeholder{
+  color: #350303;
+}
+/* .ant-switch.ant-switch-checked:hover{
+  background-color: hsl(274deg, 82%, 60%);
+} */
