@@ -9,23 +9,8 @@ import { Switch } from 'antd';
 import search from "./search.svg"
 import axios from "axios"
 
-const onChange = (checked: boolean) => {
-
-  console.log(`switch to ${checked}`);
-};
 
 function App() {
-  // interface Dictionary {
-  //   meanings: {
-  //     partOfSpeech: string[],  // E.g., "noun", "verb"
-  //     definitions: string[],
-  //     synonyms?: string[],   // Optional (not always present in response)
-  //     antonyms?: string[]   // Optional
-  //   },
-  //   phonetic: string,
-
-  // }
-
   interface Dictionary {
     meanings: {
       partOfSpeech: string[], // E.g., "noun", "verb"
@@ -45,8 +30,17 @@ function App() {
   const [dictionaryValue, setDictionaryValue] = useState<Dictionary[]>([])
   const [selectedFont, setSelectedFont] = useState<string>("sans-serif")
   const [audioData, setAudioData] = useState<string | null>(null);
+  const [toggleOn, setToggleOn] = useState<boolean>(false)
   //const [wordData, setWordData] = useState<Dictionary | null>(null)
 
+
+
+  const onChange = (checked: boolean) => {
+
+    console.log(`switch to ${checked}`);
+    setToggleOn(checked)
+  };
+  
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
   useEffect(() => {
@@ -69,13 +63,10 @@ function App() {
     e.preventDefault();
     setWord(e.target.value)
   }
-  let switchFont = (e: any) => {
-    let font = e.target;
-    e.style.font = font
-  }
+
 
   return (
-    <div className="App max-w-3xl m-auto mt-16 px-[24px]">
+    <div className={`App max-w-3xl m-auto pt-16 px-[24px] ${toggleOn ? 'bg-black' : 'bg-white'}`}>
       <header className=' max-w-3xl m-auto mt-16 px-[24px]'>
         <div className='flex justify-between'>
           <img src={logo} alt='logo' className='w-11 h-11 object-cover' />
@@ -88,7 +79,7 @@ function App() {
               </select>
             </div>
             <div className="flex  ml-8 px-8 justify-between">
-              <Switch defaultChecked={false} onChange={onChange} />
+              <Switch defaultChecked={toggleOn} onChange={onChange} />
               <span>
                 <img src={moon} alt='moon-icon' />
               </span>
@@ -97,7 +88,7 @@ function App() {
         </div>
         <div>
           <span className='flex justify-between relative'>
-            <input onChange={handleInput} className='py-5 px-6 bg-[#F5F5F5] rounded-2xl text-xl font-bold mt-[4.5rem] w-full' type="text" placeholder='Search for any word...' />
+            <input onChange={handleInput} className={`py-5 px-6 ${toggleOn ? 'bg-[#1F1F1F]' : 'bg-[#F5F5F5]' } rounded-2xl text-xl font-bold mt-[4.5rem] w-full` } type="text" placeholder='Search for any word...' />
             <img className='absolute top-24 cursor-pointer right-8 z-10 w-8' src={search} alt='search icon' />
           </span>
         </div>
