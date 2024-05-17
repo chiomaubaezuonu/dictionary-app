@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './App.css';
 import './index.css';
-import logo from "./logo.png"
+import logo3 from "./logo3 .png"
 // import arrowDown from "./arrow-down.svg"
 import playAudio from "./playAudio.jpeg"
-import moon from "./moon.png"
+import moon2 from "./moon2.png"
 import { Switch } from 'antd';
 import search from "./search.svg"
 import axios from "axios"
@@ -84,7 +84,7 @@ function App() {
       <header className='max-w-3xl m-auto mt-16 px-[24px]'>
         <div className='flex justify-between'>
           <div className='bg-black'>
-            <img src={logo} alt='logo' className='w-11 h-11 object-cover' />
+            <img src={logo3} alt='logo' className='w-11 h-11 object-cover' />
           </div>
           <div className='flex'>
             <div >
@@ -94,10 +94,10 @@ function App() {
                 <option className='cursor-pointer' value="mono">Mono</option>
               </select>
             </div>
-            <div className="flex  ml-8 px-8 justify-between">
+            <div className="flex  ml-8  justify-between items-center gap-4">
               <Switch defaultChecked={toggleOn} onChange={onChange} />
               <span>
-                <img src={moon} alt='moon-icon' />
+                <img className='w-8'  src={moon2} alt='moon-icon' />
               </span>
             </div>
           </div>
