@@ -36,15 +36,13 @@ function App() {
   //const [wordData, setWordData] = useState<Dictionary | null>(null)
 
 
-
+  const inputStyle = `py-5 px-6 ${toggleOn ? 'bg-[#1F1F1F] text-white' : 'bg-[#F5F5F5]'} rounded-2xl text-xl font-bold mt-[4.5rem] w-full font-${selectedFont}`;
   const onChange = (checked: boolean) => {
 
     // console.log(`switch to ${checked}`);
     setToggleOn(checked)
   };
 
-
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   useEffect(() => {
     if (word.trim() !== "") {
       setIsLoading(true)
@@ -66,12 +64,6 @@ function App() {
     }
   }, [word])
 
-  const handlePlay = () => {
-    alert("clicked")
-    if (audioRef.current) {
-      audioRef.current.play();
-    }
-  };
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -80,7 +72,7 @@ function App() {
 
   // max-w-3xl
   return (
-    <div className={`App w-full  m-auto py-16 px-[24px] ${toggleOn ? 'bg-black' : 'bg-white'}`}>
+    <div className={`App w-full py-4 px-[0.01rem] m-auto md:py-16 md:px-[24px] ${toggleOn ? 'bg-black' : 'bg-white'}`}>
       <header className='max-w-6xl m-auto mt-16 px-[24px]'>
         <div className='flex justify-between'>
           <div className='bg-black'>
@@ -104,7 +96,7 @@ function App() {
         </div>
         <div>
           <span className='flex justify-between relative'>
-            <input onChange={handleInput} className={`py-5 px-6 ${toggleOn ? 'bg-[#1F1F1F] text-white' : 'bg-[#F5F5F5]'} rounded-2xl text-xl font-bold mt-[4.5rem] w-full`} type="text" placeholder='Search for any word...' />
+            <input onChange={handleInput}  className={inputStyle} style={{ fontFamily: selectedFont }} type="text" placeholder='Search for any word...' />
             <img onClick={() => handleInput} className='absolute top-24 cursor-pointer right-8 z-10 w-8' src={search} alt='search icon' />
           </span>
         </div>
@@ -128,7 +120,6 @@ function App() {
             <div>
               <div className='flex justify-between text-[#050505] items-center text-[4rem] font-bold py-6'>
                 <h1 className={`${toggleOn ? 'text-white' : 'text-[#050505]'}`}>{word}</h1>
-                <img onClick={handlePlay} className='w-12 cursor-pointer' src={playAudio} alt="play audio icon" />
 
               </div>
               {dictionaryValue && dictionaryValue.map((item, index) => (
