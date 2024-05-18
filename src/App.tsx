@@ -15,7 +15,7 @@ function App() {
   interface Dictionary {
     meanings: {
       partOfSpeech: string[], // E.g., "noun", "verb"
-      definitions: { definition: string }[],
+      definitions: { definition: string}[],
       synonyms?: string[],  // Optional (not always present in response)
       antonyms?: string[]  // Optional
     }[],
@@ -81,7 +81,7 @@ function App() {
   // max-w-3xl
   return (
     <div className={`App w-full  m-auto py-16 px-[24px] ${toggleOn ? 'bg-black' : 'bg-white'}`}>
-      <header className='max-w-3xl m-auto mt-16 px-[24px]'>
+      <header className='max-w-6xl m-auto mt-16 px-[24px]'>
         <div className='flex justify-between'>
           <div className='bg-black'>
             <img src={logo3} alt='logo' className='w-11 h-11 object-cover' />
@@ -119,20 +119,20 @@ function App() {
   </div>
 } */}
 
-      <div  className=' max-w-3xl m-auto mt-16 px-[24px]'>
+      <div   className={`font-${selectedFont} max-w-6xl m-auto mt-16 px-[24px] `}>
         {isloading ?
           <div>
             <img src={spinner} alt='spinner' />
           </div>
           : (
             <div>
-              <div className='flex justify-between text-[#050505] items-center text-[4rem] font-bold py-6 px-6'>
+              <div className='flex justify-between text-[#050505] items-center text-[4rem] font-bold py-6'>
                 <h1 className={`${toggleOn ? 'text-white' : 'text-[#050505]'}`}>{word}</h1>
                 <img onClick={handlePlay} className='w-12 cursor-pointer' src={playAudio} alt="play audio icon" />
 
               </div>
               {dictionaryValue && dictionaryValue.map((item, index) => (
-                <div key={index} className={`font-${selectedFont}`}>
+                <div key={index}>
                   <p className='text-[#a445ed] mb-4 flex text-2xl place-items-start'>{item.phonetic}</p>
                   <p className=''>{item.meanings && item.meanings.map((each, meaningIndex) => (
                     <div key={meaningIndex}>
